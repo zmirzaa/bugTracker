@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=DM+Serif+Display&family=Inter&family=Lato&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Open+Sans&family=Pathway+Gothic+One&family=Playfair+Display:wght@500&family=Public+Sans:wght@700&family=Righteous&family=Secular+One&family=Space+Mono&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Bug Tracker.</title>
@@ -73,46 +74,50 @@
         </div>
     </div>
     <div class="container">
-        <header class="mt-3">
+        <header class="mt-3 mb-3 title-page">
             <h4>Ticket #{{ticket.id}} Details</h4>
-            {% if user.access == 1 or user.access == 2 or user.access == 3  %}
-                <a href="/edit/{{ticket.id}}">Edit Ticket</a>
-                <a href="/delete/ticket/{{ticket.id}}">Delete</a>
-            {% elif user.id == ticket.dev_id %}
-                <a href="/edit/{{ticket.id}}">Edit Ticket</a>
-            {% endif %}
         </header>
-        <div class="card">
-            <div class="card-body">
-                <p>Type: {{ticket.type}}</p> 
-                <p>Assigned To: {{dev.ticketDev.firstName}} {{dev.ticketDev.lastName}}</p>
-                <p>Details: {{ticket.description}}</p>
-                <p>Priority: {{ticket.priority}}</p>
-                <p>Status: {{ticket.status}}</p>
-                <p>Created: {{ticket.createdAt.strftime('%B %e, %Y')}}</p>
-                <p>Last Updated Changes: {{ticket.updatedAt.strftime('%B %e, %Y')}} </p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <form action="/createComment" method="post" class="mb-2">
-                    <input type="hidden" name="ticket_id" value="{{ticket.id}}">
-                    <label class="title-pages" path="description">Comment:</label>
-                    <input name="description" class="form-control" placeholder="Write comment here..." required>	         
-                </form>			
-                <div class="card">
-                    <div class="card-body text-start">
-                        {% for c in ticket.comments  %}
-                            <p>{{c.commenter.firstName}} {{c.commenter.lastName}}: <em>{{c.description}}</em></p>
-                        {% endfor %}
+        <div class="d-flex justify-content-evenly align-items-top">
+            <div class="card border shadow p-1 mb-3 bg-body rounded w-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <p>Type: <span class="mb-0 opacity-75">{{ticket.type}}</span></p> 
+                        <h6>Assigned To: <span class="mb-0 opacity-75">{{dev.ticketDev.firstName}} {{dev.ticketDev.lastName}}</span></h6>
                     </div>
+                    <h6>Priority: <span class="mb-0 opacity-75">{{ticket.priority}}</span></h6>
+                    <h6>Status: <span class="mb-0 opacity-75">{{ticket.status}}</span></h6>
+                    <h6 class="mb-5">Details: <span class="mb-0 opacity-75">{{ticket.description}}</span></h6>
+                    <small>Created: {{ticket.createdAt.strftime('%B %e, %Y')}}</small><br>
+                    <small>Last Updated Changes: {{ticket.updatedAt.strftime('%B %e, %Y')}}</small>
                 </div>
             </div>
-        </div>
+            <div class="card border shadow p-2 mb-3 bg-body rounded w-75">
+                <div class="card-body">
+                    <form action="/createComment" method="post" class="mb-3">
+                        <input type="hidden" name="ticket_id" value="{{ticket.id}}">
+                        <p class="text-center">Ticket Updates/Suggestions</p>
+                        <input name="description" class="form-control" placeholder="Write comment here..." required>	         
+                    </form>			
+                    {% for c in ticket.comments  %}
+                        <p>{{c.commenter.firstName}} {{c.commenter.lastName}}: <em>{{c.description}}</em></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div> 
+        {% if user.access == 1 or user.access == 2 or user.access == 3  %}
+                <div class="text-end">
+                    <a href="/edit/{{ticket.id}}" class="btn btn-primary">Edit Ticket</a>
+                    <a href="/delete/ticket/{{ticket.id}}" class="btn btn-danger">Delete</a>
+                </div>
+            {% elif user.id == ticket.dev_id %}
+                <div class="text-end">
+                    <a href="/edit/{{ticket.id}}" class="btn btn-primary">Edit Ticket</a>
+                </div>
+        {% endif %}
+        <footer class="py-3 my-4 border-top text-center">
+            <span class="mb-3 mb-md-0 text-muted">© 2022 Zainab Mirza</span>
+        </footer>
     </div>
-    <footer class="py-3 my-4 border-top text-center">
-        <span class="mb-3 mb-md-0 text-muted">© 2022 Zainab Mirza</span>
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

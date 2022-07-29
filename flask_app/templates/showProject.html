@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=DM+Serif+Display&family=Inter&family=Lato&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Open+Sans&family=Pathway+Gothic+One&family=Playfair+Display:wght@500&family=Public+Sans:wght@700&family=Righteous&family=Secular+One&family=Space+Mono&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Bug Tracker.</title>
@@ -77,19 +78,14 @@
                 <h4 class="mt-3">{{project.name}}</h4>
                 <h6 class="mb-3">{{project.description}}</h6>
             </div>
-            <div>
-                {% if user.id == 1 or user.access == 2 %}
-                    <a class="btn btn-danger" href="/delete/project/{{project.id}}">Delete Project</a>
-                {% endif %}
-            </div>
         </header>
         <div class="row gx-5">
             <div class="col">
-                <div class="p-3 border rounded-3 bg-light">
+                <div class="p-3 border rounded-3 shadow p-3 mb-5 bg-body rounded">
                     <div class="d-flex justify-content-between mb-2 align-items-center">        
                         <h4 class="text-center">Team</h4>
                         {% if user.id == 1 or user.access == 2 %}
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Assign Dev
                             </button>
                         {% endif %}
@@ -146,11 +142,11 @@
                 </div>
             </div>
             <div class="col">
-                <div class="p-3 border rounded-3 bg-light">
+                <div class="p-3 border rounded-3 shadow p-3 mb-5 bg-body rounded">
                     <div class="d-flex justify-content-between mb-2 align-items-center">        
                         <h4 class="text-center">Tickets</h4>
                         {% if user.id == 1 or user.access == 2 or user.access == 3 %}
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ticketModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ticketModal">
                             New Ticket
                             </button>
                         {% endif %}
@@ -230,9 +226,16 @@
                     </div>
                 </div>
             </div>
-<footer class="py-3 my-4 border-top text-center">
-    <span class="mb-3 mb-md-0 text-muted">© 2022 Zainab Mirza</span>
-</footer>
+        </div>
+        <div class="text-end">
+            {% if user.id == 1 or user.access == 2 %}
+                <a class="btn btn-danger" href="/delete/project/{{project.id}}">Delete Project</a>
+            {% endif %}
+        </div>
+        <footer class="py-3 my-4 border-top text-center">
+            <span class="mb-3 mb-md-0 text-muted">© 2022 Zainab Mirza</span>
+        </footer>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -40,6 +40,18 @@ class Project:
     
 
     @classmethod
+    def getAll(cls):
+            query ="SELECT * FROM projects;"
+            results = connectToMySQL(cls.db).query_db(query)
+            projects = []
+
+            for p in results:
+                projects.append(cls(p))
+            return projects 
+    
+
+
+    @classmethod
     def update(cls, data):
         query = "UPDATE projects SET name=%(name)s, description=%(description)s, updatedAt=NOW() WHERE id = %(id)s;"
         return connectToMySQL(cls.db).query_db(query, data)

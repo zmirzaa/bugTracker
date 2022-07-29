@@ -1,7 +1,10 @@
-from flask_app.models.project import Project
 from flask_app import app 
-from flask import render_template, redirect, session, request, flash 
+from flask import render_template, redirect, session, request, flash
+import requests
+import os
 from flask_app.models.user import User 
+from flask_app.models.ticket import Ticket 
+from flask_app.models.project import Project
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -15,7 +18,7 @@ def index():
 def registration(): 
     return render_template('register.html') 
 
-
+        
 
 @app.route('/register', methods=['POST']) 
 def register(): 
@@ -61,10 +64,13 @@ def dashboard():
     data = {
         'id': session['user_id']
     }
+    r = requests.get("https://api.goprogram.ai/inspiration")
+    print(r.json())
     user = User.getOne(data)
     if user.id == 1: 
-        return render_template("adminDashboard.html")
-    return render_template("dashboard.html", user=user, tickets=User.userTickets(data), projects=User.userProjects(data))
+        return render_template("adminDashboard.html", tickets=Ticket.getAll(), projects=Project.getAll(), quote=r.json())
+    return render_template("dashboard.html", user=user, tickets=User.userTickets(data), projects=User.userProjects(data), quote=r.json())
+
 
 @app.route('/employees')
 def employees(): 

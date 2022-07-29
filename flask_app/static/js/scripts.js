@@ -18,7 +18,7 @@ window.addEventListener('load', (event) => {
                 row.appendChild(projectDesc);
 
                 let projectActions = document.createElement('td')
-                projectActions.innerHTML = '<a href="/show/project/{{project_id}}">Details</a>'
+                projectActions.innerHTML += "<a href='show/project/"+data[i].id+"'>Details</a>";
                 row.appendChild(projectActions);
 
                 projectsTable.appendChild(row);
@@ -54,7 +54,7 @@ var myForm = document.getElementById('myForm');
         row.appendChild(projectDesc);
 
         let projectActions = document.createElement('td')
-        projectActions.innerHTML = '<a href="/show/project/">Details</a>'
+        projectActions.innerHTML += "<a href='show/project/"+data.id+"'>Details</a>";
         row.appendChild(projectActions);
 
         projectsTable.appendChild(row);
@@ -69,5 +69,4 @@ var myForm = document.getElementById('myForm');
     myModal.addEventListener('shown.bs.modal', () => {
       myInput.focus()
     })
-
 
