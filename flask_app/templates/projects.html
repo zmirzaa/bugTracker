@@ -71,7 +71,7 @@
         </div>
     </div>
         <main class="d-flex justify-content-evenly align-items-top container mt-5">
-            <form id="myForm", method="post" class="p-md-3 border rounded-3 shadow p-3 mb-5 bg-body rounded">
+            <form id="myForm", method="post" class="p-md-3 border rounded-3 shadow p-3 mb-3 bg-body rounded">
                 <h4 class="text-center">New Project</h4>
                 <div class="form-floating mb-3">
                     <input name="name" class="form-control" required>
@@ -84,7 +84,7 @@
                     <button class="w-100 btn btn-lg btn-primary">Create</button>
                 </div>
             </form>
-            <div class="card p-2 p-md-3 border rounded-3 bg-light shadow p-3 mb-5 bg-body rounded">
+            <div class="card p-2 p-md-3 border rounded-3 bg-light shadow p-3 mb-3 bg-body rounded">
                 <h4 class="text-center">Current Projects</h4>
                 <div class="card-body">
                     <table class="table table-light table-striped">
@@ -101,6 +101,14 @@
                 </div>
         <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
     </main>
+    <div class="container">
+        <div class="d-flex mt-2 project-pics">
+            <img src="/static/img/pexels-lukas-317355.jpg" class="img-fluid rounded pics" alt="crowd-pic">
+            <img src="/static/img/pexels-marc-mueller-380769.jpg" class="img-fluid rounded pics" alt="crowd-pic">
+            <img src="/static/img/pexels-mikhail-nilov-7988238.jpg" class="img-fluid rounded pics" alt="crowd-pic">
+            <img src="/static/img/pexels-pixabay-38568.jpg" class="img-fluid rounded pics" alt="crowd-pic">
+        </div>
+    </div>
     <footer class="py-3 my-4 border-top text-center">
         <span class="mb-3 mb-md-0 text-muted">© 2022 Zainab Mirza</span>
     </footer>

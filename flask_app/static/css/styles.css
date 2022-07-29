@@ -31,7 +31,7 @@ a:hover {
 }
 
 .sub-title {
-    background-color: #5e94e4;
+    background-color: #7c858d;
 }
 
 
@@ -41,6 +41,15 @@ a:hover {
 }
 
 .dash-pics {
-    width: 100%;
-    height: 275px;
+    width: 324px;
+    height: 300px;
+}
+
+.pics {
+    width: 315px; 
+    height: 300px;
+}
+
+.project-pics {
+    margin-left: 18px; 
 }
